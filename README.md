@@ -1,15 +1,27 @@
-sudo pacman -S libtirpc rpcsvc - proto gcc make rpcbind
-sudo systemctl enable -- now rpcbind
+## Dependencias (Arch Linux)
+```bash
+sudo pacman -S libtirpc rpcsvc-proto gcc make
+```
 
-# Generate stubs and header from service definition
-rpcgen squid . x
-
-# Compile server and client
+## Compilar
+```bash
+rpcgen squid.x
 make all
+```
 
-# Terminal 1 -- server
-./ squid_server
-# Terminal 2 , 3 , 4 -- clients
-./ squid_client localhost 1 Alice
-./ squid_client localhost 2 Bob
-./ squid_client localhost 3 Carlos
+## Correr servidor
+```bash
+./squid_server
+```
+
+## Conectarse como jugador
+```bash
+./squid_client <IP_del_servidor> <puente 1-3> <tu_nombre>
+```
+
+### Ejemplo
+```bash
+./squid_client 192.168.1.105 1 Alice
+./squid_client 192.168.1.105 2 Bob
+./squid_client 192.168.1.105 3 Carlos
+```
